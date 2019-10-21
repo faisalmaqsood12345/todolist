@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>New ToDo List</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>ToDo List</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Add New Task</p>
+	
+		<form th:action="@{/todolists/saveform}"
+			  th:object="${toDoList}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			<div>
+				<textarea th:field="*{description}"
+					 rows = "4" cols = "80" placeholder="Description"></textarea>
+				<div>
+				 	<label class="col-sm-2 control-label">Is Task Finished</label>
+					 <input type="checkbox" th:field="*{taskDone}"
+							class="col-sm-2 control-label ">
+				</div>
+				<input type="hidden" th:field="*{createdAt}" readonly 
+					class="form-control mb-4 col-4" placeholder="Created At">
+				<input type="hidden" th:field="*{updatedAt}" readonly
+					class="form-control mb-4 col-4" placeholder="Updated At">
+				<input type="hidden" th:field="*{username}" readonly
+					class="form-control mb-4 col-4" placeholder="Username">
+				</div>
+			<div>
+				<button type="submit" class="btn btn-info col-2">Save</button>
+			</div>
+			
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/todolists/list}">MainList</a>
+		
+	</div>
+</body>
+
+</html>
